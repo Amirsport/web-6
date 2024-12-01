@@ -1,7 +1,16 @@
 package main
 
-// здесь надо написать код
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-	// и здесь тоже
+	http.HandleFunc("/getMessage", handleGetRequest)
+	fmt.Println("Server started on :8080")
+	http.ListenAndServe(":8080", nil)
+}
+
+func handleGetRequest(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello, web!")
 }
